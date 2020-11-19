@@ -1,0 +1,14 @@
+[
+        {"nome":"DEBITO AUTOMATICO"},
+        {"nome":"CARTÃO DE DEBITO"},
+        {"nome":"CARTÃO DE CREDITO"},
+        {"nome":"BOLETO"},
+        {"nome":"TRANSFERENCIA"},
+        {"nome":"ESPECIE"},
+        {"nome":"DARF"},
+        {"nome":"DEPOSITO"},
+        {"nome":"CHEQUE"},
+        {"nome":"SAQUE"},
+        {"nome":"DOC"},
+        {"nome":"TED"}
+    ]

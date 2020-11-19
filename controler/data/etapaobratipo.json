@@ -1,0 +1,19 @@
+{
+    "data":[
+        {"nome":"ALICERCE"},
+        {"nome":"ALVENARIA"},
+        {"nome":"ASSINATURA DE CONTRATO"},
+        {"nome":"CANTEIRO"},
+        {"nome":"CARPINTARIA"},
+        {"nome":"COBERTURA"},
+        {"nome":"ESTRUTURA"},
+        {"nome":"FORRO"},
+        {"nome":"FUNDAÇÃO"},
+        {"nome":"INSTALAÇÕES ELÉTRICAS"},
+        {"nome":"INSTALAÇÕES HIDROSSANITÁRIAS"},
+        {"nome":"PINTURA"},
+        {"nome":"PISO E REVESTIMENTOS"},
+        {"nome":"SERRALHERIA"},
+        {"nome":"SERVIÇOS PRELIMINARES"}
+    ]
+}

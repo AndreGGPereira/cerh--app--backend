@@ -1,0 +1,243 @@
+
+
+//remover tudo que havia na url ate a parte apos /usuarios/
+	sid := strings.TrimPrefix(r.URL.Path, "/usuarios/")
+	
+	
+	// converter string em valor inteito
+	id, _ := strconv.Atoi(sid)
+
+
+//Struct TodoPageData tem uma lista de estados
+	listaEstados := TodoPageData{Estados: []Estado{
+		{ID: es.ID , Nome: es.Nome },
+	},
+
+
+//copiar um slice 
+    para outros copy(Estados,ps)
+
+//adicionar slice
+
+
+
+var ps []Estado
+	for rows.Next() {
+	var es Estado
+	rows.Scan(&es.ID, &es.Nome)
+
+
+
+    	//CriarBancoStruck11()
+	//u := GetUser(w, req)
+	//showSessions() // for demonstration purposes
+	
+//	type Person struct {
+//		UserName string
+//		Emails   []string
+//	}
+	//q := modelos.GetEstadoAll()
+//	p := Person{UserName: "Astaxie", Emails:  []string{"astaxie@beego.me", "astaxie@gmail.com"},}
+//		fmt.Println(reflect.TypeOf(p))
+//	data := DadosEstados{
+//		Titulo: "Lista de Estados" ,
+//		listaEstados: []modelos.Estado{
+//			{ID: 1, Nome: "André" },
+//		},
+//}
+//
+//	fmt.Println("Teste", data)
+///Deu certo mostrar esses dados para jogar uma lista deverer ser gerado uma lista
+// de estado e jogar a lista no tpl
+
+//	model := &browseModel{
+//		Bucket:     "Andre",
+//		Folder:     " Galvao",
+//	}
+// aqui deu certo
+//	model := &browseModel{
+//		Bucket:     "Andre",
+//		Folder:     " Galvao",
+//	}
+//	var ps []modelos.Estado
+//	for rows.Next() {
+//		var es modelos.Estado
+//		rows.Scan(&es.ID, &es.Nome)
+//		if err != nil {
+//			log.Println(err)
+		//	http.Error(res, "there was an error", http.StatusInternalServerError)
+//			return
+//		}
+//		ps := TodoPageData{PageTitle: "Astaxie",Estados:  []modelos.Estado{ {ID : 1 , Nome : "André"},
+//		{ID : 1 , Nome : "André"}}, }
+
+		// /ps = append(ps, PageData{Id: id})
+		// = append(ps, modelos.Estado{ID: es.ID, Nome: es.Nome})
+		//fmt.Println("Imprimir ps " , ps)
+		//return
+//		fmt.Println("PS", ps)
+//	}
+////	fmt.Println("PS", ps)
+//	p := Person{UserName: "Astaxie", Emails:  []string{"astaxie@beego.me", "astaxie@gmail.com"},}
+//
+	//data := TodoPageData{PageTitle: "My TODO list" , []semesters}
+
+//q := teste []modelos.Estado
+//	for rows.Next() {
+//	var es modelos.Estado
+//	rows.Scan(&es.ID, &es.Nome)
+//		{ID: es.ID , Nome: es.Nome },
+//},
+//	}
+//	}
+//
+
+
+
+//pe := TodoPageData{Estados:  []modelos.Estado{ps[0],ps[1]},}
+//p1 := TodoPageData{Estados : ps}
+// /ps = append(ps, PageData{Id: id})
+//ps = append(ps, modelos.Estado{ID: es.ID, Nome: es.Nome})
+//fmt.Println("Imprimir ps " , ps)
+//	fmt.Println("teste",  listaEstados	)
+//	fmt.Println("teste",  listaEstados	)
+
+
+
+//fmt.Println("teste",  listaEstados	)
+
+//AllEstados []Estado{ID: 1 , Nome: "André" },{ID: 2 , Nome:  "Galvão"},{ID: 3 , Nome:  "Pereira"}
+
+//dataEstado : []TodosEs{
+//		{Title: "Task 1" , Done: false, Nome: "André" }
+//		{Title: "Task 2" , Done: false, Nome:  "Galvão"}
+//		{Title: "Task 3" , Done: false, Nome:  "Pereira"}
+//}
+
+//type Person struct {
+//		UserName string
+//		Emails   []string
+//}
+//	p := Person{UserName: "Astaxie", Emails:  []string{"astaxie@beego.me", "astaxie@gmail.com"},
+//}
+
+//Cria um sclice de estado
+
+//var listaEstados []modelos.Estado
+//	for rows.Next() {
+//	var es Estado
+////	rows.Scan(&es.ID, &es.Nome)
+//	fmt.Println("Estados nome : ", &es.Nome)
+//	fmt.Println(es)
+//	listaEstados = append(listaEstados, es)
+//}
+
+
+//for rows.Next() {
+	//var estado modelos.Estado
+	//		rows.Scan(&estado.ID, &estado.Nome)
+	//		estados = append(estados, estado)
+	//	}
+
+//	for i, numero := range estados {
+	//	fmt.Println("Testando", i, numero.Nome)
+	//	PassarDados := numero.Nome
+//	}
+	//showSessions() // for demonstration purposes
+// /ps = append(ps, PageData{Id: id})
+	// = append(ps, modelos.Estado{ID: es.ID, Nome: es.Nome})
+//	}
+//	var lista []modelos.Estado
+//	dataEstado : []TodosEs{
+//		{Title: "Task 1" , Done: false, Nome: "André" }
+//		{Title: "Task 2" , Done: false, Nome:  "Galvão"}
+//		{Title: "Task 3" , Done: false, Nome:  "Pereira"}
+//	}
+
+	//data := TodoPageData{
+	//PageTitle: "My TODO list" , ps: []modelos.Estado{},}
+
+ 	//var	Estados := []modelos.Estado{}
+	//for rows.Next() {
+	//	var es modelos.Estado
+	//	rows.Scan(&es.ID, &es.Nome)
+	//	Estados = append(Estados, es)
+	//}
+	
+//	p := Person{UserName: "Astaxie", Emails:  []string{"astaxie@beego.me", "astaxie@gmail.com"},}
+//
+	//data := TodoPageData{PageTitle: "My TODO list" , []semesters}
+
+//q := teste []modelos.Estado
+//	for rows.Next() {
+//	var es modelos.Estado
+//	rows.Scan(&es.ID, &es.Nome)
+//		{ID: es.ID , Nome: es.Nome },
+//},
+//	}
+//	}
+//
+// atribuição direta
+//pe := TodoPageData{Estados:  []modelos.Estado{ps[0],ps[1]},}
+//p := Person{UserName: "Astaxie",
+//	Emails:  []string{"astaxie@beego.me", "astaxie@gmail.com"},}
+
+
+//p1 := TodoPageData{Estados : ps}
+
+
+//CadEstado função para cadastro de estados
+func cadEstado(w http.ResponseWriter, req *http.Request) {
+//	if AlreadyLoggedIn(w, req) {
+//		http.Redirect(w, req, "/", http.StatusSeeOther)
+//		return
+//	}
+	fmt.Println("Entrou no Cadastro Estado")
+	var Estado modelos.Estado
+	fmt.Println("Entrou no Cadastro Estado1")
+	// process form submission
+	if req.Method == http.MethodPost {
+		fmt.Println("Entrou no Cadastro Estado2")
+		// get form values
+		Estado.Nome = req.FormValue("nome")
+		fmt.Println("Entrou no Cadastro Estado3")
+		fmt.Println("Nome Estado", Estado.Nome)
+		fmt.Println("Entrou no Cadastro Estado4")
+		//passar dados para cadastro
+	    modelos.CadEstados(Estado)		
+	}
+	//showSessions() 
+	tpl.ExecuteTemplate(w, "cadEstado.gohtml", Estado)
+}
+
+func listaEstado(w http.ResponseWriter, req *http.Request) {
+	p1 := TodoPageData{Estados : modelos.GetEstadoAll()}
+	fmt.Println("Lista de Estados", p1)
+	tpl.ExecuteTemplate(w, "listaEstado.gohtml", p1)
+}
+
+JSON
+	ENVIANDO DADOS JSON
+// json.NewEncoder(w).Encode(ps)
+
+	 Pegar json e jogar para uma variavel
+	//	perJson, _ := json.Marshal(ps)
+	//	fmt.Println(string(perJson))
+
+	PEGAR DADOS E JOGAR NA VARIAVEL
+	decoder := json.NewDecoder(req.Body)
+	var obj Estado
+	err := decoder.Decode(&obj)
+	if err != nil {
+		panic(err)
+	}
+
+
+	/*
+		var obj Estado
+		obj = getEstadoID(controler.StringForInt(params["id"]))
+		json.NewEncoder(w).Encode(&obj)
+		perJson, _ := json.Marshal(obj)
+		fmt.Println(string(perJson))
+
+	*/

@@ -1,0 +1,221 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
+	"html/template"
+	"os"
+	"strconv"
+	"log"
+	//"github.com/rs/cors"
+//	"io/ioutil"
+//	"log"
+)
+var tpl *template.Template
+type Post struct {
+	Title    string   `json:"title"`
+	Content  string   `json:"content"`
+	//Preco float64  `json:"preco"`
+	//Tags  []string `json:"tags"`
+}
+
+type Data struct {
+	Id    int      `json:"id"`
+	Nome  string   `json:"nome"`
+	//Preco float64  `json:"preco"`
+	//Tags  []string `json:"tags"`
+}
+
+func init() {
+	tpl = template.Must(template.ParseGlob("templates/*.gohtml"))
+}
+
+func main() {
+
+	fmt.Println("Hello, playground")
+	router := mux.NewRouter()
+//	c := cors.AllowAll()
+//	c = cors.HandlerFunc()
+
+	//headers := handlers.AllowedHeaders([]string{"X-Auth-Key", "X-Auth-Secret", "Content-Type"}) 
+	headers :=  handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"})
+	methods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"})
+	//	methods := handlers.AllowedMethods([]string{http.MethodGet,http.MethodPost,	http.MethodPut,	http.MethodPatch, http.MethodDelete,http.MethodOptions,	http.MethodHead,})
+	origins := handlers.AllowedOrigins([]string{"*"})
+	
+	router.HandleFunc("/", index)
+	router.HandleFunc("/cadastro", Cadastro).Methods("POST")
+	router.HandleFunc("/teste", Teste).Methods("GET")
+
+	if os.Getenv("PORT") == "" {
+		log.Fatal(http.ListenAndServe(":8080", handlers.CORS(headers,methods,origins)(router)))
+	} else {
+		port, err := strconv.Atoi(os.Getenv("PORT"))
+		if err != nil {
+			log.Println("Port was defined but could not be parsed.")
+			os.Exit(1)
+		}
+		log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), handlers.CORS(headers,methods,origins)(router)))
+	}
+	//handler := c.Handler(router)
+	//http.ListenAndServe(":8080", handler)	
+
+	//http.ListenAndServe(":8888", handlers.CORS(headers,methods,origins)(router))
+	//log.Fatal(http.ListenAndServe(":3000", handlers.CORS(handlers.AllowedHeaders([]string{"X-Requested-With", "Content-Type", "Authorization"}),
+	//handlers.AllowedMethods([]string{"GET", "POST", "PUT", "HEAD", "OPTIONS"}), handlers.AllowedOrigins([]string{"*"}))(router)))
+	
+	//handler := cors.Default().Handler(mux)
+   // http.ListenAndServe(":8080", handler)
+	//log.Fatal(http.ListenAndServe(":8080", router))
+	//corsObj := handlers.AllowedOrigins([]string{"*"})
+	//http.ListenAndServe(":8080", handlers.CORS(corsObj)(r))
+	//http.HandleFunc("/teste", teste)
+	//http.HandleFunc("/cadastro", cadastro)
+	//http.ListenAndServe(":8080", nil)
+
+}
+/*
+func setupResponse(w *http.ResponseWriter, req *http.Request) {
+	fmt.Println("Entrou aqui no cadastro")
+	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+    (*w).Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+    (*w).Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+}
+*/
+
+
+func index(w http.ResponseWriter, req *http.Request) {
+
+	tpl.ExecuteTemplate(w, "index.gohtml", nil)
+
+}
+
+func Teste(w http.ResponseWriter, req *http.Request) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+  w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.Header().Set("Content-Type", "application/json")
+
+
+	p1 := Data{1, "André e Lindo"}
+	p2 := Data{2, " Deu certo"}
+	
+	var datas []Data
+	datas = append(datas,p1,p2)
+	fmt.Println(datas)
+	//s = append(s, 2, 3, 4)
+	p1Json, _ := json.Marshal(datas)
+	fmt.Println(string(p1Json))
+	w.Write(p1Json)
+
+	
+}
+
+func Cadastro(w http.ResponseWriter, req *http.Request) {
+	//w.Header().Set("Access-Control-Allow-Origin", "*")
+  //  w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+  w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Println("Entrou no cadastro   :    ")
+
+  decoder := json.NewDecoder(req.Body)
+
+  var post Post
+  err := decoder.Decode(&post)
+  if err != nil {
+	  panic(err)
+  }
+
+  owner := post.Title
+  name := post.Content
+
+  fmt.Println("decoder   :    ", decoder)
+  fmt.Println("produto.title   :    ", post.Title)
+  fmt.Println("Get   :    ", post.Content)
+  fmt.Println("owner   :    ", owner)
+  fmt.Println("name   :    ", name)
+
+	
+	var posts []Post
+	posts = append(posts,post)
+	fmt.Println(posts)
+	//s = append(s, 2, 3, 4)
+	p1Json, _ := json.Marshal(posts)
+	fmt.Println(string(p1Json))
+	w.Write(p1Json)
+
+
+
+/*
+
+  body, err := ioutil.ReadAll(req.Body)
+    if err != nil {
+	 // err = CustErr(err, "Cannot read request body.\nStopping here.")
+	  log.Println(err)
+	  http.Error(w, "Internal server error", http.StatusInternalServerError)
+	 
+  }
+  
+  // Store JSON data in a userInput struct
+
+  err = json.Unmarshal(body, &produto)
+  if err != nil {
+	//  err = CustErr(err, "Cannot unmarshall json.\nStopping here.")
+	  log.Println(err)
+	  http.Error(w, "Internal server error", http.StatusInternalServerError)
+	 
+  }
+
+
+*/
+	
+	
+
+	//defer req.Body.Close()
+	//params := mux.Vars(req)
+	//var movie produto
+	//if err := json.NewDecoder(req.Body).Decode(&movie); err != nil {
+	//	respondWithError(w, http.StatusBadRequest, "Invalid request payload")
+		
+//	}
+
+
+
+///	fmt.Println("Titulo  :    ",  Titulo := req.PostFormValue("title"))
+//	fmt.Println("Conteudo  :    ",  Conteudo := req.PostFormValue("content"))
+
+//	fmt.Println("Titulo  :    ",  Titulo := req.FormValue("title"))
+//	fmt.Println("Conteudo  :    ",  Conteudo := req.FormValue("content"))
+	
+
+	
+	
+	//url := "http://127.0.0.1:3000/form"
+ 	//response, erro := http.Get(url)
+  	// lendo o json do response do http request
+//	responseJson, erro := ioutil.ReadAll(response.Body)
+	//var dat map[string]interface{}
+//	var dados []produto
+
+//	err := json.Unmarshal(responseJson, &dados)
+  	
+//	simpleObjectJson, err := json.Marshal(responseJson)
+	
+	//simpleObjectJson1, err1 := json.Unmarshal(responseJson)
+	
+
+	//var dadosJson []Desenvolvedor
+	//erro = json.Unmarshal(responseJson, &dadosJson) // aqui acontece a magica!
+	//mt.Println("vrro   :    ",vrro )
+
+ 
+	// testando a estrutura de dados
+	//fmt.Println(responseJson)
+
+	//params := mux.Vars(req)
+
+	
+}
