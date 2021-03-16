@@ -15,7 +15,7 @@ func init() {
 
 	var err error
 	
-	DB, err = sql.Open("postgres", "postgres://postgres:Andre110407@localhost/cerh?sslmode=disable")
+	DB, err = sql.Open("postgres", "postgres://")
 	fmt.Println("Testanto a conexao banco de dados - persistencia/conexaoDB")
 
 	if err != nil {
